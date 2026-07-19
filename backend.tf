@@ -1,0 +1,18 @@
+terraform {
+  required_version = ">= 1.3.0"
+
+  required_providers {
+    aws = {
+      source  = "hashicorp/aws"
+      version = "~> 5.0"
+    }
+  }
+
+  backend "s3" {
+    bucket         = "project1-infra"
+    region         = "us-east-1"
+    key            = "project1-infra/terraform.tfstate"
+    encrypt        = true
+    dynamodb_table = "terraform-locks"
+  }
+}
